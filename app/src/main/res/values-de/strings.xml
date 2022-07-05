@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="settings">Einstellungen</string>
+    <string name="browse">Durchsuchen</string>
+    <string name="discover">Entdecke die Dinge dieser Welt</string>
+    <string name="search">Suchen</string>
+    <string name="recommended_for_you">Für dich empfohlen</string>
+    <string name="categories">Kategorien</string>
+    <string name="each_category">Tausende Artikel in jeder Kategorie</string>
+    <string name="bookmarks">Lesezeichen</string>
+    <string name="saved_articles_to_the_library">Artikel in der Bibliothek gespeichert</string>
+    <string name="result">Ergebnis</string>
+    <string name="language">Sprache</string>
+    <string name="find">Finde Tausende von Themen, die dich interessieren</string>
+    <string name="not_connected">"Internet nicht verbunden"</string>
+    <string name="you_have_not">Du hast noch keine Artikel gespeichert. Fangen Sie jetzt an, sie zu lesen und zu bookmarken</string>
+    <string name="next">Nächste</string>
+    <string name="night_mode">Nacht-Modus</string>
+</resources>

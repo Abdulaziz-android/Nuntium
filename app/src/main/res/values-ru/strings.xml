@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Настройки</string>
+    <string name="browse">Обзор</string>
+    <string name="discover">Откройте для себя вещи этого мира</string>
+    <string name="search">Поиск</string>
+    <string name="recommended_for_you">Рекомендуется для вас</string>
+    <string name="categories">Категории</string>
+    <string name="each_category">Тысячи статей в каждой категории</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="saved_articles_to_the_library">Статьи сохранены в библиотеке</string>
+    <string name="result">Результат</string>
+    <string name="language">Язык</string>
+    <string name="find">Найдите тысячи тем, которые вас интересуют</string>
+    <string name="not_connected">"Интернет не подключен"</string>
+    <string name="you_have_not">Вы еще не сохранили ни одной статьи. Начните читать и добавьте их в закладки сейчас</string>
+    <string name="next">Следующий</string>
+    <string name="night_mode">Ночной режим</string>
+</resources>
