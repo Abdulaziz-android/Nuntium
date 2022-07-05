@@ -7,7 +7,7 @@ import java.io.Serializable
 
 @Entity
 data class News(
-    @TypeConverters(CompanyConverter::class)
+    @TypeConverters(StringListConverter::class)
     val categories: List<String>?,
     val description: String?,
     val image_url: String?,

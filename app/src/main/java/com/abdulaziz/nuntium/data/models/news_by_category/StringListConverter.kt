@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
-class CompanyConverter {
+class StringListConverter {
     @TypeConverter
     fun fromStringList(list: List<String?>?): String? {
         if (list == null) {
