@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.abdulaziz.nuntium.R
-import com.abdulaziz.nuntium.adapters.OnBoardingAdapter
+import com.abdulaziz.nuntium.ui.adapters.OnBoardingAdapter
 import com.abdulaziz.nuntium.databinding.FragmentOnBoardingBinding
 import com.abdulaziz.nuntium.ui.transformer.CardTransformer
 import com.abdulaziz.nuntium.ui.transformer.HorizontalMarginItemDecoration
@@ -17,7 +17,6 @@ class OnBoardingFragment : Fragment() {
 
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding get() = _binding!!
-    private lateinit var pagerAdapter: OnBoardingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +41,9 @@ class OnBoardingFragment : Fragment() {
             val list = arrayListOf(
                 "https://static.toiimg.com/photo/84475061.cms",
                 "https://cdn.vox-cdn.com/thumbor/YqtFL7c39ikKKr8P2zNXhxuD7QE=/0x0:3888x2592/1200x800/filters:focal(1633x985:2255x1607)/cdn.vox-cdn.com/uploads/chorus_image/image/66646657/shutterstock_302433650.0.jpg",
-                "https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/mopcRDfetVhBLTtUkXTb-YxqzO8=/1660x934/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/57MCPY55RGKW5LTZWTT5QTC67Y.jpg"
+                "https://wamu.org/wp-content/uploads/2020/06/200601_DCProtest_Turner_26-1500x1000.jpg"
                 )
-            pagerAdapter = OnBoardingAdapter(list)
+            val pagerAdapter = OnBoardingAdapter(list)
             indicatorView.apply {
                 setNormalSlideWidth(30f)
                 setCheckedSlideWidth(70f)

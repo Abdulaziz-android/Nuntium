@@ -16,4 +16,29 @@
     <string name="you_have_not">Aún no has guardado ningún artículo. Comience a leerlos y a marcarlos ahora</string>
     <string name="next">Próximo</string>
     <string name="night_mode">Modo nocturno</string>
+
+    <string name="general">General</string>
+    <string name="politics">Política</string>
+    <string name="sports">Deportes</string>
+    <string name="business">Negocio</string>
+    <string name="travel">Viajes</string>
+    <string name="tech">Tecnología</string>
+    <string name="health">Salud</string>
+    <string name="food">Comida</string>
+    <string name="science">Ciencia</string>
+    <string name="entertainment">Entretenimiento</string>
+
+    <string-array name="category_name_list">
+        <item>General</item>
+        <item>Política</item>
+        <item>Deportes</item>
+        <item>Negocio</item>
+        <item>Viajes</item>
+        <item>Tecnología</item>
+        <item>Salud</item>
+        <item>Comida</item>
+        <item>Ciencia</item>
+        <item>Entretenimiento</item>
+    </string-array>
+
 </resources>

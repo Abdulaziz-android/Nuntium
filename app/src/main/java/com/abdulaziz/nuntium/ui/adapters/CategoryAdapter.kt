@@ -1,5 +1,6 @@
-package com.abdulaziz.nuntium.adapters
+package com.abdulaziz.nuntium.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,6 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.TFVH>() {
     private var topics = arrayListOf<String>()
     private var list = arrayListOf<String>()
     private var selectedTopics: String = ""
-
 
     inner class TFVH(private val itemBinding: ItemTopicBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
@@ -46,11 +46,10 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.TFVH>() {
 
     override fun getItemCount(): Int = list.size
 
-    fun setSelectedTopics(mlist: ArrayList<String>) {
-
+    fun setSelectedTopics(mlist: ArrayList<String>, context: Context) {
         selectedList = mlist
         topics = getTopicsListText()
-        list = getTopicsList()
+        list = getTopicsList(context)
 
         val stringBuilder = StringBuilder()
         mlist.forEach {

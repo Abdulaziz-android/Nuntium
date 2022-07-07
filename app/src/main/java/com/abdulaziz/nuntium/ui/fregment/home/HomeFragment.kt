@@ -16,8 +16,8 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import com.abdulaziz.nuntium.App
 import com.abdulaziz.nuntium.R
-import com.abdulaziz.nuntium.adapters.NewsAdapter
-import com.abdulaziz.nuntium.adapters.PagerNewsAdapter
+import com.abdulaziz.nuntium.ui.adapters.NewsAdapter
+import com.abdulaziz.nuntium.ui.adapters.PagerNewsAdapter
 import com.abdulaziz.nuntium.data.local.dao.NewsDao
 import com.abdulaziz.nuntium.data.models.news_by_category.News
 import com.abdulaziz.nuntium.databinding.FragmentHomeBinding
@@ -41,18 +41,10 @@ class HomeFragment : ThemeFragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    @Inject
-    lateinit var homeViewModel: HomeViewModel
-
-    @Inject
-    lateinit var newsDao: NewsDao
-
-    @Inject
-    lateinit var sPref: SharedPreferences
-
-    @Inject
-    lateinit var networkHelper: NetworkHelper
+    @Inject lateinit var homeViewModel: HomeViewModel
+    @Inject lateinit var newsDao: NewsDao
+    @Inject lateinit var sPref: SharedPreferences
+    @Inject lateinit var networkHelper: NetworkHelper
     private lateinit var pagerNewsAdapter: PagerNewsAdapter
     private lateinit var newsAdapter: NewsAdapter
     private var isObserved = false
@@ -69,7 +61,7 @@ class HomeFragment : ThemeFragment() {
         if (!isObserved) {
             initAdapters()
         }
-        observeViewModel()
+        observeBaseNews()
         setUI()
         setOnClickListeners()
 
@@ -77,7 +69,6 @@ class HomeFragment : ThemeFragment() {
     }
 
     override fun syncTheme(appTheme: AppTheme) {
-
         val myAppTheme = appTheme as MyAppTheme
         context?.let {
             // set background color
@@ -89,6 +80,58 @@ class HomeFragment : ThemeFragment() {
             tabItemColor = myAppTheme.activityBottomNavViewBackColor(it)
             setTabs()
         }
+    }
+
+    private fun observeBaseNews() {
+        lifecycleScope.launchWhenCreated {
+            launch {
+                homeViewModel.stateFlow.collect {
+                    when (it) {
+                        is NewsResource.Idle -> {
+                            binding.progressBarHrv.visibility = View.GONE
+                        }
+                        is NewsResource.Loading -> {
+                            pagerNewsAdapter.submitList(emptyList())
+                            binding.progressBarHrv.visibility = View.VISIBLE
+                        }
+                        is NewsResource.Success -> {
+                            pagerNewsAdapter.submitList(it.list)
+                            binding.progressBarHrv.visibility = View.GONE
+                        }
+                        is NewsResource.Error -> {
+                            Toast.makeText(binding.root.context, it.message, Toast.LENGTH_SHORT)
+                                .show()
+                            binding.progressBarHrv.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+            launch {
+                homeViewModel.recommendedState.collect {
+                    when (it) {
+                        is NewsResource.Idle -> {
+                            binding.progressBarRrv.visibility = View.GONE
+                        }
+                        is NewsResource.Loading -> {
+                            binding.progressBarRrv.visibility = View.VISIBLE
+                            binding.recommendTv.visibility = View.VISIBLE
+                        }
+                        is NewsResource.Success -> {
+                            newsAdapter.submitList(it.list)
+                            binding.recommendTv.visibility = View.VISIBLE
+                            binding.progressBarRrv.visibility = View.GONE
+                        }
+                        is NewsResource.Error -> {
+                            binding.recommendTv.visibility = View.GONE
+                            binding.progressBarRrv.visibility = View.GONE
+                            Toast.makeText(binding.root.context, it.message, Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                }
+            }
+        }
+        isObserved = true
     }
 
     private fun setOnClickListeners() {
@@ -143,58 +186,6 @@ class HomeFragment : ThemeFragment() {
 
     }
 
-    private fun observeViewModel() {
-        lifecycleScope.launchWhenStarted {
-            launch {
-                homeViewModel.stateFlow.collect {
-                    when (it) {
-                        is NewsResource.Idle -> {
-                            binding.progressBarHrv.visibility = View.GONE
-                        }
-                        is NewsResource.Loading -> {
-                            pagerNewsAdapter.submitList(emptyList())
-                            binding.progressBarHrv.visibility = View.VISIBLE
-                        }
-                        is NewsResource.Success -> {
-                            pagerNewsAdapter.submitList(it.list)
-                            binding.progressBarHrv.visibility = View.GONE
-                        }
-                        is NewsResource.Error -> {
-                            Toast.makeText(binding.root.context, it.message, Toast.LENGTH_SHORT)
-                                .show()
-                            binding.progressBarHrv.visibility = View.GONE
-                        }
-                    }
-                }
-            }
-            launch {
-                homeViewModel.recommendedState.collect {
-                    when (it) {
-                        is NewsResource.Idle -> {
-                            binding.progressBarRrv.visibility = View.GONE
-                        }
-                        is NewsResource.Loading -> {
-                            binding.progressBarRrv.visibility = View.VISIBLE
-                            binding.recommendTv.visibility = View.VISIBLE
-                        }
-                        is NewsResource.Success -> {
-                            newsAdapter.submitList(it.list)
-                            binding.recommendTv.visibility = View.VISIBLE
-                            binding.progressBarRrv.visibility = View.GONE
-                        }
-                        is NewsResource.Error -> {
-                            binding.recommendTv.visibility = View.GONE
-                            binding.progressBarRrv.visibility = View.GONE
-                            Toast.makeText(binding.root.context, it.message, Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
-                }
-            }
-        }
-        isObserved = true
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     private fun setTabs() {
         val gson = Gson()
@@ -216,6 +207,8 @@ class HomeFragment : ThemeFragment() {
         }
 
         val pagesList = resources.getStringArray(R.array.category_list)
+        val categoryNameList = resources.getStringArray(R.array.category_name_list)
+
         homeViewModel.getNews(pagesList[0].lowercase(), language)
 
         homeViewModel.getRecommendedNews(builder.toString(), language)
@@ -225,7 +218,7 @@ class HomeFragment : ThemeFragment() {
             val tabView: View = ItemTabBinding.inflate(layoutInflater).root
             val textView = tabView.findViewById<TextView>(R.id.tab_title)
             val cardView = tabView.findViewById<CardView>(R.id.card_view)
-            textView.text = pagesList[i]
+            textView.text = categoryNameList[i]
             if (i == 0) {
                 cardView.setCardBackgroundColor(
                     ContextCompat.getColor(
@@ -270,7 +263,7 @@ class HomeFragment : ThemeFragment() {
                 )
                 textView.setTextColor(Color.WHITE)
 
-                homeViewModel.getNews(textView.text.toString().lowercase(), language)
+                homeViewModel.getNews(pagesList[tab.position].lowercase(), language)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {

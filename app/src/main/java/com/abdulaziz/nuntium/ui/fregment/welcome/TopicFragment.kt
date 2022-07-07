@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.abdulaziz.nuntium.App
-import com.abdulaziz.nuntium.adapters.TopicFavoriteAdapter
+import com.abdulaziz.nuntium.ui.adapters.TopicFavoriteAdapter
 import com.abdulaziz.nuntium.databinding.FragmentTopicBinding
 import com.abdulaziz.nuntium.ui.activity.MainActivity
 import com.abdulaziz.nuntium.ui.activity.WelcomeActivity
@@ -38,7 +38,7 @@ class TopicFragment : Fragment() {
     }
 
     private fun loadData() {
-        val topicsList = getTopicsList()
+        val topicsList = getTopicsList(binding.root.context)
         adapter = TopicFavoriteAdapter(topicsList)
         binding.rv.adapter = adapter
 

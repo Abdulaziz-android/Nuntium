@@ -1,4 +1,4 @@
-package com.abdulaziz.nuntium.adapters
+package com.abdulaziz.nuntium.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

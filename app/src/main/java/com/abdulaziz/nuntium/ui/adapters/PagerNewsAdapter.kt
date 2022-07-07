@@ -1,4 +1,4 @@
-package com.abdulaziz.nuntium.adapters
+package com.abdulaziz.nuntium.ui.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -31,8 +31,7 @@ class PagerNewsAdapter(
                     saveIv.setImageResource(R.drawable.ic_baseline_bookmark_24)
                 } else {
                     local = news
-                    saveIv.setImageResource(R.drawable.ic_bookmark)
-
+                    saveIv.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
                 }
 
                 root.setOnClickListener {

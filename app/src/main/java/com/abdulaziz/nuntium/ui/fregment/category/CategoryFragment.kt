@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.abdulaziz.nuntium.App
-import com.abdulaziz.nuntium.adapters.CategoryAdapter
+import com.abdulaziz.nuntium.ui.adapters.CategoryAdapter
 import com.abdulaziz.nuntium.databinding.FragmentCategoryBinding
 import com.abdulaziz.nuntium.themes.MyAppTheme
 import com.abdulaziz.nuntium.ui.activity.MainView
@@ -19,7 +19,7 @@ class CategoryFragment : ThemeFragment() {
 
     private var _binding: FragmentCategoryBinding? =null
     private val binding get() = _binding!!
-    private lateinit var adapter:CategoryAdapter
+    private lateinit var adapter: CategoryAdapter
     @Inject lateinit var sPref:SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +35,9 @@ class CategoryFragment : ThemeFragment() {
         App.appComponent.inject(this)
         (activity as MainView?)?.showBottomBar()
 
-
         binding.rv.adapter = adapter
         val mlist = getSelectedList()
-        adapter.setSelectedTopics(mlist)
+        adapter.setSelectedTopics(mlist, binding.root.context)
 
         return binding.root
     }

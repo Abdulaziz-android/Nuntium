@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import com.abdulaziz.nuntium.App
 import com.abdulaziz.nuntium.R
-import com.abdulaziz.nuntium.adapters.NewsAdapter
+import com.abdulaziz.nuntium.ui.adapters.NewsAdapter
 import com.abdulaziz.nuntium.data.local.dao.NewsDao
 import com.abdulaziz.nuntium.data.models.news_by_category.News
 import com.abdulaziz.nuntium.databinding.FragmentBookmarkBinding

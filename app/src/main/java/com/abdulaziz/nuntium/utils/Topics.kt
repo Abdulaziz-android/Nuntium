@@ -1,18 +1,22 @@
 package com.abdulaziz.nuntium.utils
 
+import android.content.Context
+import androidx.core.content.ContextCompat
+import com.abdulaziz.nuntium.R
+
 object Topics {
-    fun getTopicsList(): ArrayList<String> {
+    fun getTopicsList(context: Context): ArrayList<String> {
         return arrayListOf(
-            "\uD83D\uDCF0   General",
-            "⚖️   Politics",
-            "\uD83C\uDFC8   Sports",
-            "\u200E\u200D\uD83D\uDCBC   Business",
-            "✈️Travel",
-            "\uD83E\uDD16   Tech",
-            "\uD83D\uDC68\u200D⚕️   Health",
-            "\uD83C\uDF54   Food",
-            "\uD83D\uDD2C   Science",
-            "\uD83C\uDFA1   Entertainment"
+            "\uD83D\uDCF0   ${context.getString(R.string.general)}",
+            "⚖️   ${context.getString(R.string.politics)}",
+            "\uD83C\uDFC8   ${context.getString(R.string.sports)}",
+            "\u200E\u200D\uD83D\uDCBC   ${context.getString(R.string.business)}",
+            "✈${context.getString(R.string.travel)}",
+            "\uD83E\uDD16   ${context.getString(R.string.tech)}",
+            "\uD83D\uDC68\u200D⚕️   ${context.getString(R.string.health)}",
+            "\uD83C\uDF54   ${context.getString(R.string.food)}",
+            "\uD83D\uDD2C   ${context.getString(R.string.science)}",
+            "\uD83C\uDFA1   ${context.getString(R.string.entertainment)}"
         )
     }
     fun getTopicsListText(): ArrayList<String> {

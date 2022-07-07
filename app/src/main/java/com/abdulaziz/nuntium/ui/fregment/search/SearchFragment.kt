@@ -14,7 +14,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import com.abdulaziz.nuntium.App
 import com.abdulaziz.nuntium.R
-import com.abdulaziz.nuntium.adapters.NewsAdapter
+import com.abdulaziz.nuntium.ui.adapters.NewsAdapter
 import com.abdulaziz.nuntium.data.models.news_by_category.News
 import com.abdulaziz.nuntium.databinding.FragmentSearchBinding
 import com.abdulaziz.nuntium.themes.MyAppTheme

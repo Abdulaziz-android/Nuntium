@@ -16,7 +16,7 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun provideAppDatabase(context: Context): AppDatabase {
-        return Room.databaseBuilder(context, AppDatabase::class.java, "database")
+        return Room.databaseBuilder(context, AppDatabase::class.java, "nuntium_database")
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
             .build()

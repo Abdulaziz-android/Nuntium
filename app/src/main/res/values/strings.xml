@@ -31,6 +31,17 @@
     <string name="welcome_description" translatable="false">All news in one place, be the first to know last news</string>
     <string name="get_started" translatable="false">Get Started</string>
 
+    <string name="general">General</string>
+    <string name="politics">Politics</string>
+    <string name="sports">Sports</string>
+    <string name="business">Business</string>
+    <string name="travel">Travel</string>
+    <string name="tech">Tech</string>
+    <string name="health">Health</string>
+    <string name="food">Food</string>
+    <string name="science">Science</string>
+    <string name="entertainment">Entertainment</string>
+
     <string-array name="category_list" translatable="false">
         <item>General</item>
         <item>Politics</item>
@@ -43,4 +54,18 @@
         <item>Science</item>
         <item>Entertainment</item>
     </string-array>
+
+    <string-array name="category_name_list">
+        <item>General</item>
+        <item>Politics</item>
+        <item>Sports</item>
+        <item>Business</item>
+        <item>Travel</item>
+        <item>Tech</item>
+        <item>Health</item>
+        <item>Food</item>
+        <item>Science</item>
+        <item>Entertainment</item>
+    </string-array>
+
 </resources>
